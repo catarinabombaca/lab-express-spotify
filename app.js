@@ -42,12 +42,9 @@ app.get("/albums/:artistId", (req, res, next) => {
 });
 
 app.get("/artist-search", (request, response, next) => {
-  console.log(request.query.name);
   spotifyApi
     .searchArtists(request.query.name)
     .then((data) => {
-      console.log("The received data from the API: ", data.body);
-      console.log(data.body.artists);
       const artists = data.body.artists.items;
       response.render("artist", {artists});
     })
