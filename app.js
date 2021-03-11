@@ -28,6 +28,19 @@ spotifyApi
   );
 
 // Our routes go here:
+app.get("/tracks/:albumId", (req, res, next) => {
+  spotifyApi.getAlbumTracks(req.params.albumId).then(
+    (data) => {
+          console.log("Tracks:", data.body);
+          const tracks = data.body.items;
+           res.render("tracks", { tracks });
+    },
+    (err) => {
+      console.error(err);
+    }
+  );
+});
+
 app.get("/albums/:artistId", (req, res, next) => {
     spotifyApi.getArtistAlbums(req.params.artistId).then(
       (data) => {
@@ -46,6 +59,7 @@ app.get("/artist-search", (request, response, next) => {
     .searchArtists(request.query.name)
     .then((data) => {
       const artists = data.body.artists.items;
+      console.log(artists[0].images)
       response.render("artist", {artists});
     })
     .catch((err) =>
@@ -57,6 +71,6 @@ app.get("/", (request, response, next) => {
   response.render("home");
 });
 
-app.listen(3000, () =>
-  console.log("My Spotify project running on port 3000 🎧 🥁 🎸 🔊")
+app.listen(process.env.PORT, () =>
+  console.log(`My Spotify project running on port ${process.env.PORT} 🎧 🥁 🎸 🔊`)
 );

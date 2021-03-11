@@ -1,4 +1,6 @@
-<label>{{this.name}}</label>
-{{#each this.images}} {{#if @first}} <img src={{this.url}}> {{/if}} {{/each}}
-<img src="{{this.images[0].url}}" alt="cover">
-<a href="/albums/{{this.id}}">View Tracks</a>
+<div class='artist-card' style="background-image: url('{{this.images.[0].url}}');">
+    <div class='artist-card-frame'>
+        <label class="center-text">{{this.name}}</label>
+        <a class='search-btn center-text' id='view-album-btn' href="/tracks/{{this.id}}">View tracks</a>
+    </div>
+</div>

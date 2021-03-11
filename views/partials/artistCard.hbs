@@ -1,2 +1,6 @@
-<label>{{this.name}}</label>
-<a href="/albums/{{this.id}}">View Albums</a>
+<div class='artist-card' style="background-image: url('{{this.images.[0].url}}');">
+    <div class='artist-card-frame'>
+        <label class="center-text">{{this.name}}</label>
+        <a class='search-btn center-text' id='view-album-btn' href="/albums/{{this.id}}">View Albums</a>
+    </div>
+</div>
